@@ -11,14 +11,17 @@ function setup(pin)
 end
 
 function setpos(pin, angle)
-	if 	   angle < MIN_ANGLE then angle = MIN_ANGLE
+	if     angle < MIN_ANGLE then angle = MIN_ANGLE
 	elseif angle > MAX_ANGLE then angle = MAX_ANGLE
 	end
  	
 	pwm.setduty(pin, angleToPulse(angle))
 end
 
+function stop(pin)
+    pwm.stop(pin)
+end
+
 function angleToPulse(angle)
 	return ((angle - MIN_ANGLE) * (MAX_PULSE - MIN_PULSE) / (MAX_ANGLE - MIN_ANGLE) + MIN_PULSE)
 end
-
